@@ -15,10 +15,10 @@ const MedicalForm = () => {
     course_of_disease: "",
     attack_course: "",
     treatment_effectiveness: "",
-    cough: false,
-    phlegm: false,
-    shortness_of_breath: false,
-    temperature: false,
+    cough: "",
+    phlegm: "",
+    shortness_of_breath: "",
+    temperature: "",
     cough_attack: "",
     what_sputum: "",
     what_suffocation: "",
@@ -56,7 +56,18 @@ const MedicalForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(formData);
+    if(formData.cough===""){
+      formData.cough="Yo'q"
+    }
+    if(formData.phlegm===""){
+      formData.phlegm="Yo'q"
+    }
+    if(formData.shortness_of_breath===""){
+      formData.shortness_of_breath="Yo'q"
+    }
+    if(formData.temperature===""){
+      formData.temperature="Yo'q"
+    }
     
     try {
       const response = await fetch("https://hospital-backend.ilhomjon.site/api/v1/patients/create/", {
@@ -72,6 +83,7 @@ const MedicalForm = () => {
       }
 
       const result = await response.json()
+      
 
       // Show the confirmation message
       setIsSubmitted(true)
@@ -306,7 +318,6 @@ const MedicalForm = () => {
               <div className="flex items-center space-x-4 mb-2">
                 <label className="inline-flex items-center">
                   <input
-                    required
                     type="checkbox"
                     name="cough_attack"
                     value="Yes"
@@ -335,7 +346,6 @@ const MedicalForm = () => {
                 </label>
                 <label className="inline-flex items-center">
                   <input
-                    required
                     type="checkbox"
                     name="cough_attack"
                     value="No"
@@ -376,6 +386,7 @@ const MedicalForm = () => {
                   ].map((option) => (
                     <label key={option} className="block">
                       <input
+                        required
                         type="radio"
                         name="cough_attack"
                         value={option}
@@ -395,7 +406,6 @@ const MedicalForm = () => {
               <div className="flex items-center space-x-4 mb-2">
                 <label className="inline-flex items-center">
                   <input
-                    required
                     type="checkbox"
                     name="what_sputum"
                     value="Yes"
@@ -424,7 +434,6 @@ const MedicalForm = () => {
                 </label>
                 <label className="inline-flex items-center">
                   <input
-                    required
                     type="checkbox"
                     name="what_sputum"
                     value="No"
@@ -463,6 +472,7 @@ const MedicalForm = () => {
                   ].map((option) => (
                     <label key={option} className="block">
                       <input
+                        required
                         type="radio"
                         name="what_sputum"
                         value={option}
@@ -482,7 +492,6 @@ const MedicalForm = () => {
               <div className="flex items-center space-x-4 mb-2">
                 <label className="inline-flex items-center">
                   <input
-                    required
                     type="checkbox"
                     name="what_suffocation"
                     value="Yes"
@@ -511,7 +520,6 @@ const MedicalForm = () => {
                 </label>
                 <label className="inline-flex items-center">
                   <input
-                    required
                     type="checkbox"
                     name="what_suffocation"
                     value="No"
@@ -548,6 +556,7 @@ const MedicalForm = () => {
                   ].map((option) => (
                     <label key={option} className="block">
                       <input
+                        required
                         type="radio"
                         name="what_suffocation"
                         value={option}
@@ -597,7 +606,6 @@ const MedicalForm = () => {
               <div className="flex items-center space-x-4 mb-2">
                 <label className="inline-flex items-center">
                   <input
-                    required
                     type="checkbox"
                     name="what_temperature"
                     value="Yes"
@@ -626,7 +634,6 @@ const MedicalForm = () => {
                 </label>
                 <label className="inline-flex items-center">
                   <input
-                    required
                     type="checkbox"
                     name="what_temperature"
                     value="No"
@@ -659,6 +666,7 @@ const MedicalForm = () => {
                   {["37-38°C", "38-39°C", "39-40°C"].map((option) => (
                     <label key={option} className="block">
                       <input
+                        required
                         type="radio"
                         name="what_temperature"
                         value={option}
@@ -694,7 +702,6 @@ const MedicalForm = () => {
               ].map((option) => (
                 <label key={option} className="block mb-2">
                   <input
-                    required
                     type="checkbox"
                     name="breath_sound_types"
                     value={option}
@@ -712,7 +719,6 @@ const MedicalForm = () => {
               {["O'ng ", "Chap", "Yuqori", "O'rta", "Past"].map((option) => (
                 <label key={option} className="block mb-2">
                   <input
-                    required
                     type="checkbox"
                     name="breath_sound_location"
                     value={option}
