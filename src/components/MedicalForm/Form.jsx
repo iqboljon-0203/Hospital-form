@@ -1,8 +1,13 @@
 import  { useState } from "react"
 import ConfirmationMessage from "../ConfirmationMessage/Message"
 import Logo from "../../assets/Logo.png"
+import { useEffect } from "react"
 const MedicalForm = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Sahifani yuqoriga qaytaradi
+  }, []); // [] - faqat bir marta ishlaydi
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitText, setSubmitText] = useState("Yuborish")
   const [formData, setFormData] = useState({
     fullname: "",
     age: "",
@@ -80,7 +85,10 @@ const MedicalForm = () => {
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
+      }else{
+        setSubmitText("Yuborildi")
       }
+      
 
       const result = await response.json()
       
@@ -715,7 +723,7 @@ const MedicalForm = () => {
             </div>
 
             <div className="mb-6">
-              <p className="mb-2 font-bold text-lg">Localization</p>
+              <p className="mb-2 font-bold text-lg">Lokalizatsiya</p>
               {["O'ng ", "Chap", "Yuqori", "O'rta", "Past"].map((option) => (
                 <label key={option} className="block mb-2">
                   <input
@@ -732,8 +740,8 @@ const MedicalForm = () => {
             </div>
           </div>
 
-          <button type="submit" className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
-            Submit
+          <button type="submit" className="block mx-auto pt-4  pr-12  pb-4  pl-12  rounded-full bg-[#FFC82A] text-base font-medium leading-[0.85rem] text-center text-[#21466D] hover:bg-[#21466D59]">
+            {submitText}
           </button>
         </form>
       )}
