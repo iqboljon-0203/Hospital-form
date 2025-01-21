@@ -1,6 +1,6 @@
 import  { useState } from "react"
 import ConfirmationMessage from "../ConfirmationMessage/Message"
-import Logo from "../../assets/Logo.png"
+import Logo from "../../assets/logo.png"
 import { useEffect } from "react"
 const MedicalForm = () => {
   useEffect(() => {
